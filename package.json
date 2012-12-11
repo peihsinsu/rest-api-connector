@@ -13,8 +13,8 @@
     }
   ],
   "dependencies": {
-    "nodemailer": "*"
-    , "log4js": "*"
+    "log4js": "*",
+    "nodeutil": "*"
   },
   "devDependencies": {
     "nodemailer":"*"
