@@ -3,6 +3,7 @@
 This is a utility for easy configure the rest api to a module. People who want to write a REST API node module, can use this for building one!
 Only some steps, that you can build your node.js module to connect your rest service.
 <ul>
+<li>Install it: npm install rest-api-connector</li>
 <li>Create a config file, that include the rest server ip, port, authentication, and url information.</li>
 <li>Create a module file, to require rest-api-connector. And config a object that include the rest connect information.</li>
 <li>Use the module that you create in the pre step, and the config object first level key will be your function name.</li>
