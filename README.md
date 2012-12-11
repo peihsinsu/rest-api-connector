@@ -1,12 +1,24 @@
 <h1>REST API Connector</h1>
 
-This is a utility for easy configure the rest api to a module. People who want to write a REST API node module, can use this for building one!
+This is a utility for easy configure the rest api to a module. People who want to write a REST API node module, can use this for building one! Only config the rest url, invoke method (GET/POST/PUT/DELETE), and the field that the module will looks like, then the module help you to auto validate your input. If you want your user call a function that named: <b> getUser(userid, callback) </b> to use the api to get user. You only need to config a json like:
+<pre>
+{
+  getUser: {
+    url:"/user/:userid",
+    method: "GET",
+    input: [{name:"userid", value:'', type:"string", max:40, nullable:false, notvalidate: true}],
+    output: { status: ['ERROR','SUCCESS'], msg: ""}
+  }
+}
+</pre>
+Then the rest-api-connector will auto generate a module called: <b>getUser(userid, callback)</b> for you. And it will export for other js to use.
+
 Only some steps, that you can build your node.js module to connect your rest service.
 <ul>
-<li>Install it: <br/>npm install rest-api-connector</li>
-<li>Create a config file, that include the rest server ip, port, authentication, and url information.</li>
-<li>Create a module file, to require rest-api-connector. And config a object that include the rest connect information.</li>
-<li>Use the module that you create in the pre step, and the config object first level key will be your function name.</li>
+<li>Prepare: Install it...<br/>npm install rest-api-connector</li>
+<li>Step1: Create a config file, that include the rest server ip, port, authentication, and url information.</li>
+<li>Step2: Create a module file, to require rest-api-connector. And config a object that include the rest connect information.</li>
+<li>Step3: Use the module that you create in the pre step, and the config object first level key will be your function name.</li>
 </ul>
 
 <h2>Step1. Sample Config File:</h2>
@@ -31,30 +43,32 @@ var api = require('rest-api-connector').api
   , apiDef = {};
 
 apiDef.firstApiCall = {
-  url:'/service1/:uuid' 
-  , method: 'GET'
-  , headers: {"Authorization": "Basic " + new Buffer('user:password').toString('base64')} //optional, if null, will use the cfg file setting
-  , input: [
-    { name:"uuid", value:'', type:"string", max:40, nullable:false, notvalidate: true}
-  ]
-  , output: {
+  url:'/service1/:uuid',
+  method: 'GET',
+  //optional, if null, will use the
+  headers: {"Authorization": "Basic " + new Buffer('user:password').toString('base64')},  
+  cfg file setting
+  input: [
+    { name:"uuid", value:'', type:"string", max:40, nullable:false, notvalidate: true }
+  ],
+  output: {
     status: ['ERROR','SUCCESS'], msg: ""
-  }
-  , validator: function(iargs){ //optional, if null, will use default validator
+  },
+  //optional, if null, will use default validator
+  validator: function(iargs){ 
     return {"valid":true};
-  }
-  , descript: "Get zone information by uuid, the uuid is the unique id of smartmachine." //optional, just for descript
+  },
+  //optional, just for descript
+  descript: "Get zone information by uuid, the uuid is the unique id of smartmachine." 
 };
 
+//The basic config for use...
 apiDef.sencondApiCall = {
-  url:'/service2/:uuid' 
-  , method: 'GET'
-  , input: [
+  url:'/service2/:uuid',
+  method: 'GET',
+  input: [
     { name:"uuid", value:'', type:"string", max:40, nullable:false }
   ]
-  , output: {
-    status: ['ERROR','SUCCESS'], msg: ""
-  }
 };
 
 api.build(__dirname+'/lib/api.cfg',apiDef);
