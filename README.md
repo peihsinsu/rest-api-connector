@@ -30,7 +30,7 @@ var api = require('rest-api-connector').api
   , apiDef = {};
 
 apiDef.firstApiCall = {
-  url:'/zones/:uuid' 
+  url:'/service1/:uuid' 
   , method: 'GET'
   , headers: {"Authorization": "Basic " + new Buffer('user:password').toString('base64')} //optional, if null, will use the cfg file setting
   , input: [
@@ -46,7 +46,7 @@ apiDef.firstApiCall = {
 };
 
 apiDef.sencondApiCall = {
-  url:'/vms/:uuid' 
+  url:'/service2/:uuid' 
   , method: 'GET'
   , input: [
     { name:"uuid", value:'', type:"string", max:40, nullable:false }
