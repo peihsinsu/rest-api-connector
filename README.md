@@ -8,7 +8,8 @@ Only some steps, that you can build your node.js module to connect your rest ser
 <li>Use the module that you create in the pre step, and the config object first level key will be your function name.</li>
 </ul>
 
-<h2>Sample Config File:</h2>
+<h2>Step1. Sample Config File:</h2>
+To config your api server information, currently only support for base64 authorization.
 <pre>
 {
   "API_CFG": {
@@ -22,12 +23,13 @@ Only some steps, that you can build your node.js module to connect your rest ser
 }
 </pre>
 
-<h2>Sample Module</h2>
+<h2>Step2. Sample Module</h2>
+In this step, you can create a sample module to operate your api service. You need to copy the api document about url, method, headers, and the input column information that include: type, size and some validator factor.
 <pre>
 var api = require('rest-api-connector').api
   , apiDef = {};
 
-apiDef.getZoneById = {
+apiDef.firstApiCall = {
   url:'/zones/:uuid' 
   , method: 'GET'
   , headers: {"Authorization": "Basic " + new Buffer('user:password').toString('base64')} //optional, if null, will use the cfg file setting
@@ -43,7 +45,7 @@ apiDef.getZoneById = {
   , descript: "Get zone information by uuid, the uuid is the unique id of smartmachine." //optional, just for descript
 };
 
-apiDef.getVmById = {
+apiDef.sencondApiCall = {
   url:'/vms/:uuid' 
   , method: 'GET'
   , input: [
@@ -58,10 +60,11 @@ api.build(__dirname+'/lib/api.cfg',apiDef);
 exports.invoke = api;
 </pre>
 
-<h2>Sample Use:</h2>
+<h2>Step3. Sample Use:</h2>
+You can require the module you write in the step2 (ex: the instance is "api"), and you can use api.invoke.[your config]() to use your api.
 <pre>
 var api = require('./sampleModule')//require('api-client').api
-api.invoke.getZoneById('3a32da60-2782xx-xoooo-1234',function(e,r,body){
+api.invoke.firstApiCall('3a32da60-2782xx-xoooo-1234',function(e,r,body){
   console.log(body);
 });
 </pre>
