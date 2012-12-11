@@ -1,0 +1,35 @@
+{
+  "name": "rest-api-connector",
+  "description": "Node.js REST API Connect Util",
+  "version": "0.0.1",
+  "author": {
+    "name": "Simon Su",
+    "email": "simonsu@mitac.com.tw"
+  },
+  "contributors": [
+    {
+      "name": "Simon Su",
+      "email": "simonsu@mitac.com.tw"
+    }
+  ],
+  "dependencies": {
+    "nodemailer": "*"
+    , "log4js": "*"
+  },
+  "devDependencies": {
+    "nodemailer":"*"
+  },
+  "keywords": [
+    "utility"
+  ],
+  "main": "index",
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "optionalDependencies": {},
+  "_engineSupported": true,
+  "_npmVersion": "1.1.9",
+  "_nodeVersion": "v0.6.13",
+  "_defaultsLoaded": true,
+  "_from": "micloud"
+}
