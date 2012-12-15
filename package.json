@@ -14,7 +14,10 @@
   ],
   "dependencies": {
     "log4js": "*",
-    "nodeutil": "*"
+    "request": "*",
+    "underscore": "*",
+    "nodeutil": "*",
+    "commander":"*"
   },
   "devDependencies": {
     "nodemailer":"*"
