@@ -83,3 +83,46 @@ api.invoke.firstApiCall('3a32da60-2782xx-xoooo-1234',function(e,r,body){
   console.log(body);
 });
 </pre>
+
+<h2>Other way to use: Extract the API definition to file</h2>
+
+<h3>Setup connection information into json format</h3>
+File: api.cfg
+<pre>
+{
+  API_CFG: {
+    "USERNAME": "your api username", //api password
+    "PASSWORD": "your api password", //api username
+    "BASE_URL": "http://123.123.123.123:123" //api url
+  }
+}
+</pre>
+
+<h3>Setup api definition into json format</h3>
+File: apiDefinition.json
+<pre>
+{
+  "apiCall": {
+    "url":"/service/:uuid",
+    "method": "GET",
+    "input": [
+      { "name":"id", "value":"", "type":"string", "max":40, "nullable":false }
+    ]
+  }
+}
+</pre>
+
+<h3>Call the service</h3>
+<pre>
+var api = require('rest-api-connector').api
+  , cfg = require('nodeutil').cfgutil;
+
+api.buildFromJson(
+  cfg.readJsonCfg(__dirname + '/api.cfg'),
+  cfg.readJsonCfg(__dirname + '/apiDefinition.json')
+);
+
+api.getKvmById(uuid, function(e,r,d){
+  console.log(d);
+});
+</pre>
