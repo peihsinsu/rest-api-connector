@@ -114,15 +114,44 @@ File: apiDefinition.json
 
 <h3>Call the service</h3>
 <pre>
-var api = require('rest-api-connector').api
-  , cfg = require('nodeutil').cfgutil;
+var api = require('rest-api-connector').api;
 
 api.buildFromJson(
-  cfg.readJsonCfg(__dirname + '/api.cfg'),
-  cfg.readJsonCfg(__dirname + '/apiDefinition.json')
+  api.readJsonCfg(__dirname + '/api.cfg'),
+  api.readJsonCfg(__dirname + '/apiDefinition.json')
 );
 
-api.getKvmById(uuid, function(e,r,d){
+api.apiCall(uuid, function(e,r,d){
   console.log(d);
 });
+</pre>
+
+<h2>Other way to use 2: Single file api server</h2>
+
+<pre>
+var api = require('rest-api-connector').api;
+
+api.buildFromJson(
+  { //define the api connection info
+    API_CFG: {
+      USERNAME: "your api username", //api password
+      PASSWORD: "your api password", //api username
+      BASE_URL: "http://123.123.123.123:123" //api url
+    }
+  },
+  { //define the api definition
+    apiCall: {
+      url:"/service/:uuid",
+      method: "GET",
+      input: [
+        { "name":"id", "value":"", "type":"string", "max":40, "nullable":false }
+      ]
+    }
+  }
+);
+
+api.apiCall(uuid, function(e,r,d){
+  console.log(d);
+});
+
 </pre>
