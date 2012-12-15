@@ -78,7 +78,7 @@ exports.invoke = api;
 <h2>Step3. Sample Use:</h2>
 You can require the module you write in the step2 (ex: the instance is "api"), and you can use api.invoke.[your config]() to use your api.
 <pre>
-var api = require('./sampleModule')//require('api-client').api
+var api = require('./sampleModule')
 api.invoke.firstApiCall('3a32da60-2782xx-xoooo-1234',function(e,r,body){
   console.log(body);
 });
