@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+var P = require('commander')
+  , fs = require('fs')
+  , cfgutil = require('nodeutil').cfgutil
+  , Step = require('nodeutil').step;
+
+P.version('0.0.1')
+  .usage('api-gen [options] <file>')
+  .option('-c, --config <cfg>', 'The api connection configuration')
+  .option('-d, --definition <def>', 'The api definition')
+  .parse(process.argv);
+
+console.log('Cfg file:' + P.args[0]);
+var cfg = {};
+Step(
+  function step1(){
+    fs.exists(P.args[0], this);
+  },
+  function step2(exists){
+    cfg = exists ? cfgutil.readJsonCfg(P.args[0]) : {};
+    function fn(cb){
+      P.prompt('api name:', function(v){
+        cfg[v] = {};
+        cb(cfg);
+      });
+    }
+    fn();
+  },
+  function final(result){
+    console.log(result);
+    console.log('Final config:');
+    console.log(cfg);
+    process.exit(0);
+  }
+) 
