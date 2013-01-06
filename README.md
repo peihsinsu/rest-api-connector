@@ -6,7 +6,7 @@ This is a utility for easy configure the rest api to a module. People who want t
   getUser: {
     url:"/user/:userid",
     method: "GET",
-    input: [{name:"userid", value:'', type:"string", max:40, nullable:false, notvalidate: true}],
+    input: [{name:"userid", value:'', type:"string", max:40, nullable:false, skipcheck: true}],
     output: { status: ['ERROR','SUCCESS'], msg: ""}
   }
 }
@@ -49,8 +49,9 @@ apiDef.firstApiCall = {
   headers: {"Authorization": "Basic " + new Buffer('user:password').toString('base64')},  
   cfg file setting
   input: [
-    { name:"uuid", value:'', type:"string", max:40, nullable:false, notvalidate: true }
+    { name:"uuid", value:'', type:"string", max:40, nullable:false, skipcheck: true }
   ],
+  notvalidate: false,
   output: {
     status: ['ERROR','SUCCESS'], msg: ""
   },
