@@ -3,7 +3,7 @@ REST API Connector
 
 This is a utility for easy configure the rest api to a module. People who want to write a REST API node module, can use this for building one! Only config the rest url, invoke method (GET/POST/PUT/DELETE), and the field that the module will looks like, then the module help you to auto validate your input. 
 
-# Easy way to use: Single file api server
+## Easy way to use: Single file api server
 If you don't metter that the json string will disturb your code format. You can merge all code in single file like:
 
 ```
@@ -51,12 +51,12 @@ If you want your user call a function that named: <b> getUser(userid, callback) 
 
 Then the rest-api-connector will auto generate a module called: <b>getUser(userid, callback)</b> for you. And it will export for other js to use.
 
-# Other
+## Other
 
 If you want to see more configurations, see: [Advance Configures](AdvanceConf.md)
 
 
-# Future work!
+## Future work!
 
 * CLI for generate the api definitions.
 * Find the way to generate configure from ExpressJS or http.createServer.
