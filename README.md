@@ -50,3 +50,13 @@ If you want your user call a function that named: <b> getUser(userid, callback) 
 ```
 
 Then the rest-api-connector will auto generate a module called: <b>getUser(userid, callback)</b> for you. And it will export for other js to use.
+
+# Other
+
+If you want to see more configurations, see: [Advance Configures](AdvanceConf.md)
+
+
+# Future work!
+
+* CLI for generate the api definitions.
+* Find the way to generate configure from ExpressJS or http.createServer.
