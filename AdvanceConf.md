@@ -189,3 +189,29 @@ Default validator will use the input config for validating the api module functi
   * max: The max size of a input parametet.
   * nullable: If true, the input cannot be a null value.
   * skipcheck: If true, will skip check process.
+
+# Request Options Overwrite
+
+In some situation, you may want to add some request options to every request. You can setup to the API_CFG with REQ_OPTS parameter. Like this:
+
+```
+pi.buildFromJson(
+  { //define the api connection info
+    API_CFG: {
+      USERNAME: "your-account", //api access username
+      PASSWORD: "your-password", //api access password
+      BASE_URL: "https://your-api-server-address", //api url
+      REQ_OPTS: {
+        rejectUnauthorized: false
+      }
+    }
+  },
+  { //define the api definition
+    getNodesInfo: {
+      url:"/api/v1/nodes",
+      method: "GET"    }
+  }
+);
+```
+
+
