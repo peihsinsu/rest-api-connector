@@ -1,7 +1,7 @@
 {
   "name": "rest-api-connector",
   "description": "Node.js REST API Connect Util",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": {
     "name": "Simon Su",
      "email": "simonsu.mail@gmail.com"
